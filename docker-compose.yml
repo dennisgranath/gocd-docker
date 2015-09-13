@@ -1,5 +1,5 @@
 go-server:
-  image: gocd/gocd-server
+  build: ./gocd-docker-server
   volumes:
     - ./gocd-docker-server/go:/etc/go
   ports:
