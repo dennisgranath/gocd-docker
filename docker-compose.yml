@@ -1,5 +1,7 @@
 go-server:
   image: gocd/gocd-server
+  volumes:
+    - ./gocd-docker-server/go:/etc/go
   ports:
     - '8153:8153'
 go-agent:
