@@ -1,0 +1,9 @@
+go-server:
+  image: gocd/gocd-server
+  ports:
+    - '8153:8153'
+go-agent:
+  build: ./gocd-docker-agent
+  privileged: true
+  links:
+    - go-server
