@@ -1,3 +1,3 @@
 FROM gocd/gocd-server
-COPY ./chown_go_config.sh /sbin/my_init.d/
-RUN chmod +x /sbin/my_init.d/chown_go_config.sh
+COPY ./chmod_go_config_dir.sh /etc/my_init.d/chmod_go_config_dir.sh
+RUN chmod +x /etc/my_init.d/chmod_go_config_dir.sh
