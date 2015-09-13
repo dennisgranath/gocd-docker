@@ -13,7 +13,7 @@
 
 1. `docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 dev`
 2. `eval “$(docker-machine env dev)”`
-3. `ruby <(curl -L https://git.io/vvvco) dev`
+3. `ruby lib/boot2docker-nfs.rb dev`
 
 ### Docker Compose
 
