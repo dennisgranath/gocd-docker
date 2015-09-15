@@ -9,7 +9,7 @@
             <tasks>
               <exec command="/bin/bash">
                 <arg>-c</arg>
-                <arg>docker build --tag "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" .</arg>
+                <arg>docker login --email $DOCKER_EMAIL --password $DOCKER_PASSWORD --username $DOCKER_USERNAME &amp;&amp; docker build --tag "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" . &amp;&amp; docker push "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISON"</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -22,20 +22,7 @@
             <tasks>
               <exec command="/bin/bash">
                 <arg>-c</arg>
-                <arg>docker run "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" test</arg>
-                <runif status="passed" />
-              </exec>
-            </tasks>
-          </job>
-        </jobs>
-      </stage>
-      <stage name="login">
-        <jobs>
-          <job name="login">
-            <tasks>
-              <exec command="/bin/bash">
-                <arg>-c</arg>
-                <arg>docker login --email $DOCKER_EMAIL --password $DOCKER_PASSWORD --username $DOCKER_USERNAME</arg>
+                <arg>docker login --email $DOCKER_EMAIL --password $DOCKER_PASSWORD --username $DOCKER_USERNAME &amp;&amp; docker run "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" test</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -44,25 +31,11 @@
       </stage>
       <stage name="push">
         <jobs>
-          <job name="push_revision">
-            <tasks>
-              <exec command="/bin/bash">
-                <arg>-c</arg>
-                <arg>docker push "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISON"</arg>
-                <runif status="passed" />
-              </exec>
-            </tasks>
-          </job>
           <job name="push_latest">
             <tasks>
               <exec command="/bin/bash">
                 <arg>-c</arg>
-                <arg>docker tag --force "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" "$DOCKER_USERNAME/$DOCKER_IMAGE:latest"</arg>
-                <runif status="passed" />
-              </exec>
-              <exec command="/bin/bash">
-                <arg>-c</arg>
-                <arg>docker push "$DOCKER_USERNAME/$DOCKER_IMAGE:latest"</arg>
+                <arg>docker login --email $DOCKER_EMAIL --password $DOCKER_PASSWORD --username $DOCKER_USERNAME &amp;&amp; docker pull "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" &amp;&amp; docker tag --force "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" "$DOCKER_USERNAME/$DOCKER_IMAGE:latest" &amp;&amp; docker push "$DOCKER_USERNAME/$DOCKER_IMAGE:latest"</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -72,4 +45,3 @@
     </pipeline>
   </templates>
 </cruise>
-
