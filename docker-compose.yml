@@ -4,7 +4,12 @@ go-server:
     - ./gocd-docker-server/go:/etc/go
   ports:
     - '8153:8153'
-go-agent:
+go-agent-1:
+  build: ./gocd-docker-agent
+  privileged: true
+  links:
+    - go-server
+go-agent-2:
   build: ./gocd-docker-agent
   privileged: true
   links:
