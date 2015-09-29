@@ -17,4 +17,10 @@
 
 ### Docker Compose
 
+To start one server and one agent:
+
 1. `docker-compose up`
+
+If you want to scale up multiple agents (three in this example):
+
+1. `docker-compose scale go-agent=3`

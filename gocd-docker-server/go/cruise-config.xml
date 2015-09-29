@@ -22,7 +22,7 @@
             <tasks>
               <exec command="/bin/bash">
                 <arg>-c</arg>
-                <arg>docker login --email $DOCKER_EMAIL --password $DOCKER_PASSWORD --username $DOCKER_USERNAME &amp;&amp; docker run "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" test</arg>
+                <arg>docker login --email $DOCKER_EMAIL --password $DOCKER_PASSWORD --username $DOCKER_USERNAME &amp;&amp; docker run --privileged "$DOCKER_USERNAME/$DOCKER_IMAGE:$GO_REVISION" test</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
