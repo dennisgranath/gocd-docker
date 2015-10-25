@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="75">
-  <server artifactsdir="artifacts" agentAutoRegisterKey="123456789abcdef" commandRepositoryLocation="default" serverId="7b37886a-8a4b-4871-851b-271753499a3f" />
+  <server agentAutoRegisterKey="123456789abcdef" artifactsdir="artifacts" commandRepositoryLocation="default" serverId="" />
   <templates>
     <pipeline name="docker">
       <stage name="build">
@@ -45,3 +45,4 @@
     </pipeline>
   </templates>
 </cruise>
+

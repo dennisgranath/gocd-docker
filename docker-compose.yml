@@ -1,11 +1,13 @@
-go-server:
-  build: ./gocd-docker-server
+server:
+  image: gocd/gocd-server
   volumes:
-    - ./gocd-docker-server/go:/etc/go
+    - './server/init.sh:/init.sh'
+    - './server/go:/etc/go'
+  hostname: go-server
   ports:
     - '8153:8153'
-go-agent:
-  build: ./gocd-docker-agent
+agent:
+  build: ./agent
   privileged: true
   links:
-    - go-server
+    - server

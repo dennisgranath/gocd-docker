@@ -13,7 +13,7 @@
 
 1. `docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 dev`
 2. `eval “$(docker-machine env dev)”`
-3. `ruby lib/boot2docker-nfs.rb dev`
+3. `ruby <(curl -L https://git.io/vvvco) my-machine123`
 
 ### Docker Compose
 
@@ -23,4 +23,4 @@ To start one server and one agent:
 
 If you want to scale up multiple agents (three in this example):
 
-1. `docker-compose scale go-agent=3`
+1. `docker-compose scale agent=3`
