@@ -1,7 +1,6 @@
 server:
-  image: gocd/gocd-server
+  image: ./server
   volumes:
-    - './server/init.sh:/init.sh'
     - './server/go:/etc/go'
   hostname: go-server
   ports:

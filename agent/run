@@ -1,2 +1,7 @@
 #!/bin/sh
+
+if hash cgroups-mount 2>/dev/null; then
+  cgroups-mount
+fi
+
 exec docker daemon
