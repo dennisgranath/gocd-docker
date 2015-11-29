@@ -6,7 +6,7 @@ server:
   ports:
     - '8153:8153'
 agent:
-  build: ./agent
+  image: gocd/gocd-agent
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - /usr/bin/docker:/usr/bin/docker
