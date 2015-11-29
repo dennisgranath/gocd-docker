@@ -1,12 +1,14 @@
 server:
   image: ./server
   volumes:
-    - './server/go:/etc/go'
+    - ./server/go:/etc/go
   hostname: go-server
   ports:
     - '8153:8153'
 agent:
   build: ./agent
-  privileged: true
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/usr/bin/docker
   links:
     - server
