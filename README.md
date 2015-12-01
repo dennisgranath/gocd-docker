@@ -5,17 +5,15 @@
 ### Prerequisites
 
 1. `brew update`
-2. `brew install docker`
-3. `brew install docker-machine`
-4. `brew install docker-compose`
+2. `brew install docker-toolbox`
 
-### Docker Machine
+### Environment Varialbles
 
-1. `docker-machine create --driver virtualbox --virtualbox-cpu-count 2 --virtualbox-memory 2048 dev`
-2. `eval “$(docker-machine env dev)”`
-3. `ruby <(curl -L https://git.io/vvvco) dev`
+`DOCKER_BINARY` should be the path to the docker binary on your host machine. For example:
 
-### Docker Compose
+`export DOCKER_BINARY=$(which docker)`
+
+### Deployment
 
 To start one server and one agent:
 

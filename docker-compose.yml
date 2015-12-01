@@ -1,14 +1,14 @@
+server-data:
+  build: ./server-data
 server:
-  image: ./server
-  volumes:
-    - ./server/go:/etc/go
+  image: gocd/gocd-server
   hostname: go-server
   ports:
     - '8153:8153'
 agent:
-  image: gocd/gocd-agent
+  build: ./agent
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - /usr/bin/docker:/usr/bin/docker
+    - $DOCKER_BINARY:/bin/docker
   links:
     - server
