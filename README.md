@@ -1,4 +1,6 @@
-# gocd
+# docker-gocd
+
+A containerized implementation of gocd.
 
 ## Developer Setup
 
