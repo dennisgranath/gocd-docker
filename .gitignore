@@ -1,8 +1,3 @@
 .DS_Store
-agentkeystore
-keystore
-truststore
-*truststore.jks
-cipher
 .idea
 *.iml
