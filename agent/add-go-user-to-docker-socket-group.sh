@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-DOCKER_SOCKET_GROUP=$(ls -l /var/run/docker.sock | awk '{print $4}')
+docker_socket_group=$(ls -l /var/run/docker.sock | awk '{print $4}')
 
-if [[ $DOCKER_SOCKET_GROUP =~ ^[0-9]+$ ]]; then
-  groupadd --gid $DOCKER_SOCKET_GROUP docker
-  DOCKER_SOCKET_GROUP=docker
+if [[ $docker_socket_group =~ ^[0-9]+$ ]]; then
+  groupadd --gid $docker_socket_group docker
+  docker_socket_group=docker
 fi
 
-usermod --append --groups "$DOCKER_SOCKET_GROUP" go
+usermod --append --groups "$docker_socket_group" go

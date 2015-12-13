@@ -9,7 +9,7 @@ A containerized implementation of gocd.
 1. `brew update`
 2. `brew install docker-toolbox`
 
-### Environment Varialbles
+### Environment Variables
 
 `DOCKER_BINARY` should be the path to the docker binary on your host machine. For example:
 
