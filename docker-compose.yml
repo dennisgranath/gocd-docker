@@ -1,3 +1,7 @@
+registry:
+  image: registry:2
+  ports:
+    - '5000:5000'
 server-data:
   build: ./server-data
 server:

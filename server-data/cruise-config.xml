@@ -9,7 +9,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-c</arg>
-                <arg>docker login --email $DOCKER_EMAIL --username $DOCKER_USERNAME --password $DOCKER_PASSWORD &amp;&amp; docker build --tag "$DOCKER_USERNAME/$GO_PIPELINE_NAME:$GO_REVISION" . &amp;&amp; docker push "$DOCKER_USERNAME/$GO_PIPELINE_NAME:$GO_REVISION"</arg>
+                <arg>docker build --tag "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" . &amp;&amp; docker push "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION"</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -22,7 +22,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-c</arg>
-                <arg>docker login --email $DOCKER_EMAIL --username $DOCKER_USERNAME --password $DOCKER_PASSWORD &amp;&amp; docker run "$DOCKER_USERNAME/$GO_PIPELINE_NAME:$GO_REVISION" test</arg>
+                <arg>docker run "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" test</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -35,7 +35,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-c</arg>
-                <arg>docker login --email $DOCKER_EMAIL --username $DOCKER_USERNAME --password $DOCKER_PASSWORD &amp;&amp; docker pull "$DOCKER_USERNAME/$GO_PIPELINE_NAME:$GO_REVISION" &amp;&amp; docker tag --force "$DOCKER_USERNAME/$GO_PIPELINE_NAME:$GO_REVISION" "$DOCKER_USERNAME/$GO_PIPELINE_NAME:latest" &amp;&amp; docker push "$DOCKER_USERNAME/$GO_PIPELINE_NAME:latest"</arg>
+                <arg>docker pull "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" &amp;&amp; docker tag --force "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" "localhost:5000/$GO_PIPELINE_NAME:latest" &amp;&amp; docker push "localhost:5000/$GO_PIPELINE_NAME:latest"</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
@@ -48,7 +48,7 @@
             <tasks>
               <exec command="bash">
                 <arg>-c</arg>
-                <arg>docker login --email $DOCKER_EMAIL --username $DOCKER_USERNAME --password $DOCKER_PASSWORD &amp;&amp; docker run "$DOCKER_USERNAME/$GO_PIPELINE_NAME:$GO_REVISION" deploy</arg>
+                <arg>docker run "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" deploy</arg>
                 <runif status="passed" />
               </exec>
             </tasks>
