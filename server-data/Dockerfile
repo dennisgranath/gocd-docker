@@ -10,4 +10,4 @@ COPY ./cruise-config.xml /etc/go/
 RUN chown -R go:go /var/lib/go-server/addons /var/log/go-server /etc/go /go-addons /var/go
 VOLUME /var/lib/go-server/addons /var/log/go-server /etc/go /go-addons /var/go
 
-COPY ./init.sh /init.sh
+COPY ./rc.local /etc/
