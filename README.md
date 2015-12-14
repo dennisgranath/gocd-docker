@@ -9,12 +9,6 @@ A containerized implementation of gocd.
 1. `brew update`
 2. `brew install docker-toolbox`
 
-### Environment Variables
-
-`DOCKER_BINARY` should be the path to the docker binary on your host machine. For example:
-
-`export DOCKER_BINARY=$(which docker)`
-
 ### Deployment
 
 To start one server and one agent:
