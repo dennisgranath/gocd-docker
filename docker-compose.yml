@@ -15,6 +15,5 @@ agent:
   build: ./agent
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - $DOCKER_BINARY:/bin/docker
   links:
     - server
