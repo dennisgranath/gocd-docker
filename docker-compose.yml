@@ -3,7 +3,7 @@ registry:
   ports:
     - '5000:5000'
 server-data:
-  build: ./server-data
+  build: ./gocd-server-data
 server:
   image: gocd/gocd-server
   hostname: go-server
@@ -12,8 +12,9 @@ server:
   volumes_from:
     - server-data
 agent:
-  build: ./agent
+  build: ./gocd-agent
   volumes:
+    - $DOCKER_BINARY:/bin/docker
     - /var/run/docker.sock:/var/run/docker.sock
   links:
     - server
