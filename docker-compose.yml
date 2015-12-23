@@ -4,18 +4,24 @@ registry:
     - '5000:5000'
   volumes:
     - ./registry/config.yml:/etc/docker/registry/config.yml
-server-data:
-  build: ./gocd-server-data
-go-server:
+gocd-data:
+  build: ./gocd-data
+  volumes:
+    - var_lib_go-server_addons:/var/lib/go-server/addons
+    - var_log_go-server:/var/log/go-server
+    - etc_go:/etc/go
+    - go-addons:/go-addons
+    - var_go:/var/go
+gocd-server:
   image: gocd/gocd-server
   ports:
     - '8153:8153'
   volumes_from:
-    - server-data
-go-agent:
+    - gocd-data
+gocd-agent:
   build: ./gocd-agent
   volumes:
     - $DOCKER_BINARY:/bin/docker
     - /var/run/docker.sock:/var/run/docker.sock
   links:
-    - go-server
+    - gocd-server

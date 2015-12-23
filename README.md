@@ -8,6 +8,19 @@ A containerized implementation of gocd.
 
 1. `brew update`
 2. `brew install docker-toolbox`
+3. `./setup.sh` (or see below for details below for a custom setup)
+
+### Volumes
+
+In order to use volumes correctly on OSX, named volumes must be created using the following commands:
+
+```
+docker volume create --name var_lib_go-server_addons
+docker volume create --name var_log_go-server
+docker volume create --name etc_go
+docker volume create --name go-addons
+docker volume create --name var_go
+```
 
 ### Environment Varialbles
 
@@ -23,4 +36,4 @@ To start one server and one agent:
 
 If you want to scale up multiple go-agents (three in this example):
 
-1. `docker-compose scale go-agent=3`
+1. `docker-compose scale gocd-agent=3`
