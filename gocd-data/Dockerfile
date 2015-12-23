@@ -8,3 +8,5 @@ RUN touch /etc/go/postgresqldb.properties
 
 RUN chown -R go:go /var/lib/go-server/addons /var/log/go-server /etc/go /go-addons /var/go
 VOLUME /var/lib/go-server/addons /var/log/go-server /etc/go /go-addons /var/go
+
+COPY ./change-volume-ownership.sh /etc/my_init.d/
