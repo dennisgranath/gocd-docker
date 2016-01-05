@@ -8,7 +8,7 @@ A containerized implementation of gocd.
 
 1. `brew update`
 2. `brew install docker-toolbox`
-3. `./setup.sh` (or see below for details below for a custom setup)
+3. `./setup.sh` (or see details below for a custom setup)
 
 ### Volumes
 
@@ -22,7 +22,7 @@ docker volume create --name go-addons
 docker volume create --name var_go
 ```
 
-### Environment Varialbles
+### Environment Variables
 
 `DOCKER_BINARY` should be the path to the docker binary on your host machine. For example:
 
