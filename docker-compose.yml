@@ -2,8 +2,6 @@ registry:
   image: registry:2
   ports:
     - '5000:5000'
-  volumes:
-    - ./registry/config.yml:/etc/docker/registry/config.yml
 gocd-data:
   build: ./gocd-data
   volumes:
@@ -19,9 +17,11 @@ gocd-server:
   volumes_from:
     - gocd-data
 gocd-agent:
-  build: ./gocd-agent
+  image: andrewshawcare/gocd-docker-agent
   volumes:
     - $DOCKER_BINARY:/bin/docker
     - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    - GO_SERVER=gocd-server
   links:
     - gocd-server
