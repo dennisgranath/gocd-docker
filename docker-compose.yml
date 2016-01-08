@@ -3,7 +3,7 @@ registry:
   ports:
     - '5000:5000'
 gocd-data:
-  build: ./gocd-data
+  image: andrewshawcare/gocd-data
   volumes:
     - var_lib_go-server_addons:/var/lib/go-server/addons
     - var_log_go-server:/var/log/go-server
