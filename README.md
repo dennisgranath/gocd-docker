@@ -8,7 +8,7 @@ A containerized implementation of gocd.
 
 1. `brew update`
 2. `brew install docker-toolbox`
-3. `./setup.sh` (or see details below for a custom setup)
+3. `eval $(cat setup.sh)` (or see details below)
 
 ### Volumes
 
