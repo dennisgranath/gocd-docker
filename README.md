@@ -12,7 +12,7 @@ A dockerized implementation of gocd using using docker-enabled agents
 
 ### Deployment
 
-To start one server and one agent:
+To start the default stack with one agent:
 
 1. `docker-compose up -d`
 
