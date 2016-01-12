@@ -14,7 +14,7 @@ A dockerized implementation of gocd using using docker-enabled agents
 
 To start one server and one agent:
 
-1. `docker-compose up`
+1. `docker-compose up -d`
 
 If you want to scale agents (three in this example):
 
