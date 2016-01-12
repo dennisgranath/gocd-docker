@@ -1,6 +1,6 @@
 # docker-gocd
 
-A containerized implementation of gocd.
+A dockerized implementation of gocd using using docker-enabled agents
 
 ## Developer Setup
 
