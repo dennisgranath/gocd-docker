@@ -1,4 +1,4 @@
-# docker-gocd
+# gocd-docker
 
 A dockerized implementation of gocd using using docker-enabled agents
 
