@@ -8,7 +8,7 @@ A dockerized implementation of gocd using using docker-enabled agents
 
 1. `brew update`
 2. `brew install docker-toolbox`
-3. `eval $(cat setup.sh)` (or see details below)
+3. `. ./setup.sh` (or see details below)
 
 ### Volumes
 
