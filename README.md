@@ -16,7 +16,7 @@ To start one server and one agent:
 
 1. `docker-compose up`
 
-If you want to scale up multiple go-agents (three in this example):
+If you want to scale agents (three in this example):
 
 1. `docker-compose scale gocd-agent=3`
 
