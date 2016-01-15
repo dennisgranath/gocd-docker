@@ -18,7 +18,7 @@ If you want to scale agents (three in this example):
 
 ## Configuration
 
-I would suggest using the following template as a base when creating a pipeline (this can be added to your `cruise-config.xml`):
+I would suggest using the following template when creating a pipeline (this can be added to your `cruise-config.xml`):
 
 ```xml
 <templates>
