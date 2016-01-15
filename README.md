@@ -2,17 +2,13 @@
 
 A dockerized implementation of gocd using using docker-enabled agents
 
-## Setup
+## Deployment
 
 ### Prerequisites
 
-1. `brew update`
-2. `brew install docker-toolbox`
-3. `. ./setup.sh` (or see details below)
+This project is deployed with Docker. The easiest way to setup a Docker environment is by installing the [Docker Toolbox](https://www.docker.com/docker-toolbox).
 
-### Deployment
-
-To start the default stack with one agent:
+### Docker Compose
 
 1. `docker-compose up`
 
