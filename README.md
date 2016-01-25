@@ -10,7 +10,8 @@ This project is deployed with Docker. The easiest way to setup a Docker environm
 
 ### Docker Compose
 
-1. `docker-compose up`
+1. `. setup.sh`
+2. `docker-compose up`
 
 If you want to scale agents (three in this example):
 
