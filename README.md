@@ -47,6 +47,7 @@ I would suggest using the following template when creating a pipeline (this can 
             <exec command="bash">
               <arg>-c</arg>
               <arg>
+                docker-compose pull &amp;&amp;
                 docker-compose run --rm $GO_PIPELINE_NAME test
               </arg>
               <runif status="passed" />
