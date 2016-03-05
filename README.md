@@ -47,7 +47,7 @@ I would suggest using the following template when creating a pipeline (this can 
             <exec command="bash">
               <arg>-c</arg>
               <arg>
-                docker run "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" test
+                docker-compose run --rm $GO_PIPELINE_NAME test
               </arg>
               <runif status="passed" />
             </exec>
@@ -64,21 +64,6 @@ I would suggest using the following template when creating a pipeline (this can 
               <arg>
                 docker tag --force "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" "localhost:5000/$GO_PIPELINE_NAME:latest" &amp;&amp;
                 docker push "localhost:5000/$GO_PIPELINE_NAME:latest"
-              </arg>
-              <runif status="passed" />
-            </exec>
-          </tasks>
-        </job>
-      </jobs>
-    </stage>
-    <stage name="deploy" cleanWorkingDir="true">
-      <jobs>
-        <job name="deploy">
-          <tasks>
-            <exec command="bash">
-              <arg>-c</arg>
-              <arg>
-                docker run "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" deploy
               </arg>
               <runif status="passed" />
             </exec>
