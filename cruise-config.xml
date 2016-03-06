@@ -51,8 +51,5 @@
       </stage>
     </pipeline>
   </templates>
-  <agents>
-    <agent hostname="c73b70481e5e" ipaddress="172.18.0.4" uuid="c8dc590b-9d83-4b79-a923-ef17033bce82" />
-  </agents>
 </cruise>
 
