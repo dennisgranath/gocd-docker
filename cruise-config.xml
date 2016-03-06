@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="78">
+  <server artifactsdir="artifacts" agentAutoRegisterKey="123456789abcdef" commandRepositoryLocation="default" serverId="" />
+  <templates>
+    <pipeline name="docker">
+      <stage name="build" cleanWorkingDir="true">
+        <jobs>
+          <job name="build">
+            <tasks>
+              <exec command="bash">
+                <arg>-c</arg>
+                <arg>docker build --tag "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" . &amp;&amp;
+                docker push "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION"</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="test" cleanWorkingDir="true">
+        <jobs>
+          <job name="test">
+            <environmentvariables>
+              <variable name="IMAGE_REGISTRY">
+                <value>localhost:5000</value>
+              </variable>
+            </environmentvariables>
+            <tasks>
+              <exec command="bash">
+                <arg>-c</arg>
+                <arg>(export IMAGE_VERSION=$GO_REVISION; docker-compose pull &amp;&amp; docker-compose run --rm $GO_PIPELINE_NAME test &amp;&amp; docker-compose down --rmi local --volumes)</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="push" cleanWorkingDir="true">
+        <jobs>
+          <job name="push">
+            <tasks>
+              <exec command="bash">
+                <arg>-c</arg>
+                <arg>docker tag --force "localhost:5000/$GO_PIPELINE_NAME:$GO_REVISION" "localhost:5000/$GO_PIPELINE_NAME:latest" &amp;&amp;
+                docker push "localhost:5000/$GO_PIPELINE_NAME:latest"</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </templates>
+  <agents>
+    <agent hostname="c73b70481e5e" ipaddress="172.18.0.4" uuid="c8dc590b-9d83-4b79-a923-ef17033bce82" />
+  </agents>
+</cruise>
+

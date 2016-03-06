@@ -20,6 +20,7 @@ services:
       - etc_go:/etc/go
       - go-addons:/go-addons
       - var_go:/var/go
+      - ./cruise-config.xml:/etc/go/cruise-config.xml
   gocd-agent:
     image: andrewshawcare/gocd-docker-agent
     volumes:
