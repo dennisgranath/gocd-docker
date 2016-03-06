@@ -43,6 +43,11 @@ I would suggest using the following template when creating a pipeline (this can 
     <stage name="test" cleanWorkingDir="true">
       <jobs>
         <job name="test">
+          <environmentvariables>
+            <variable name="IMAGE_REGISTRY">
+              <value>localhost:5000</value>
+            </variable>
+          </environmentvariables>
           <tasks>
             <exec command="bash">
               <arg>-c</arg>
