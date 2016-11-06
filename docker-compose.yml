@@ -28,6 +28,7 @@ services:
     image: diabol/gocd-agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./app-server/ansible.cfg:/etc/ansible/ansible.cfg
     environment:
       - GO_SERVER=gocd-server
     links:
