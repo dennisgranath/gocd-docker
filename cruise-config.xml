@@ -5,5 +5,69 @@
       <passwordFile path="/etc/go/users" />
     </security>
   </server>
+  <pipelines group="example-service">
+    <pipeline name="example-service-build" labeltemplate="1.${COUNT}.0">
+      <params>
+        <param name="TARGET">app-server</param>
+        <param name="SERVICE_NAME">example-service</param>
+        <param name="CONFIG_FILE">config.yml</param>
+      </params>
+      <materials>
+        <git url="https://github.com/dennisgranath/example-service.git" autoUpdate="false" />
+      </materials>
+      <stage name="Build">
+        <jobs>
+          <job name="build">
+            <tasks>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>mvn versions:set -DnewVersion=${GO_PIPELINE_LABEL}</arg>
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>mvn clean install</arg>
+              </exec>
+            </tasks>
+            <artifacts>
+              <artifact src="target" />
+              <artifact src="#{CONFIG_FILE}" />
+            </artifacts>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="QA">
+        <jobs>
+          <job name="deploy">
+            <tasks>
+              <fetchartifact stage="Build" job="build" srcdir="target" />
+              <fetchartifact stage="Build" job="build" srcfile="#{CONFIG_FILE}" />
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>ansible all -i "#{TARGET}," -u root -m copy -a "src=target/#{SERVICE_NAME}-${GO_PIPELINE_LABEL}.jar dest=/root/#{SERVICE_NAME}.jar"</arg>
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>ansible all -i "#{TARGET}," -u root -m copy -a "src=#{CONFIG_FILE} dest=/root/config.yml"</arg>
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>ansible all -i "#{TARGET}," -u root -m shell -a "killall java || true"</arg>
+              </exec>
+              <exec command="/bin/bash">
+                <arg>-c</arg>
+                <arg>ansible all -i "#{TARGET}," -u root -m shell -a "java -jar /root/#{SERVICE_NAME}.jar server /root/#{CONFIG_FILE} &gt; app.out 2&gt; app.err &lt; /dev/null &amp;"</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+  <agents>
+    <agent hostname="2bd06239ab6d" ipaddress="172.19.0.4" uuid="d6499df2-db15-4740-9414-d21ca596c8bc" />
+    <agent hostname="78a29383b5e6" ipaddress="172.19.0.4" uuid="7f94205e-e72f-4f69-8c8a-48fb29c2a2e0" />
+    <agent hostname="4bc1fac95109" ipaddress="172.19.0.4" uuid="a0a3b534-5b41-440a-8e87-c9546d52d303" />
+    <agent hostname="de24cc3a381b" ipaddress="172.19.0.4" uuid="34a1ccda-c1b8-4c8f-a72e-66e5ca1f1630" />
+  </agents>
 </cruise>
 

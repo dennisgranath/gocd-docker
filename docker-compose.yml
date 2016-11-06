@@ -6,12 +6,13 @@ volumes:
   go-addons:
   var_go:
 services:
-  registry:
-    image: registry:2
+  app-server:
+    build: ./app-server
+    image: diabol/app-server
     ports:
-      - '5000:5000'
+      - '8080:8080'
   gocd-server:
-    image: gocd/gocd-server
+    image: gocd/gocd-server:16.10.0
     ports:
       - '8153:8153'
     volumes:
@@ -21,11 +22,14 @@ services:
       - go-addons:/go-addons
       - var_go:/var/go
       - ./cruise-config.xml:/etc/go/cruise-config.xml
+      - ./users:/etc/go/users
   gocd-agent:
-    image: andrewshawcare/gocd-docker-agent
+    build: ./gocd-agent
+    image: diabol/gocd-agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - GO_SERVER=gocd-server
     links:
       - gocd-server
+      - app-server
