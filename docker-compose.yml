@@ -29,6 +29,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./app-server/ansible.cfg:/etc/ansible/ansible.cfg
+      - ./gocd-agent/config.ini:/etc/gocd-plumber/config.ini
+
     environment:
       - GO_SERVER=gocd-server
     links:

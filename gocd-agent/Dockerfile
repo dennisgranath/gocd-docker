@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install -y maven ansible \
     && curl -L -o /var/go/.ssh/id_rsa \
        https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant \
     && chmod 600 /var/go/.ssh/id_rsa \
-    && chown -R go:go /var/go/.ssh
+    && chown -R go:go /var/go/.ssh \
+    && curl -L -o /bin/gocd-plumber https://github.com/dennisgranath/gocd-plumber/releases/download/v0.9.0/gocd-plumber-0.9.0-linux-amd64 \
+    && chmod +x /bin/gocd-plumber
 
 ENV JAVA_HOME=/opt/java/jdk
 ENV PATH=$PATH:JAVA_HOME/bin
