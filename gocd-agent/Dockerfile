@@ -1,10 +1,10 @@
-FROM gocd/gocd-agent:latest
+FROM gocd/gocd-agent-deprecated:latest
 RUN apt-get update && apt-get install -y maven ansible \
     && set -ex \
     && mkdir /opt/java \
     && curl -L -H "Cookie: oraclelicense=accept-securebackup-cookie" \
         -o /opt/java/jdk.tar.gz \
-        http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.tar.gz \
+        http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz \
     && tar -xzf /opt/java/jdk.tar.gz -C /opt/java/ \
     && mv /opt/java/jdk[0-9].* /opt/java/jdk \
     && mkdir /var/go/.ssh \
